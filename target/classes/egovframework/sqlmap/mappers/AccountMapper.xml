@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="etravis.service.impl.AccountMapper">
+
+    <resultMap id="account" type="etravis.vo.AccountVO">
+        <result property="esno" column="ESNO" />
+        <result property="eano" column="EANO" />
+        <result property="accountid" column="ACCOUNTID" />
+        <result property="accountname" column="ACCOUNTNAME" />
+        <result property="productid" column="PRODUCTID" />
+        <result property="productname" column="PRODUCTNAME" />
+        <result property="propertyid" column="PROPERTYID" />
+        <result property="propertyname" column="PROPERTYNAME" />
+    </resultMap>
+   
+    
+	<select id="selectAccountList" parameterType="etravis.vo.AccountSearchVO" resultMap="account">
+		SELECT * FROM ETRAVIS_ACCOUNT
+			WHERE PROPERTYNAME LIKE '%' || #{propertysearch} || '%'
+			AND EANO NOT IN(
+			SELECT  A.EANO
+				FROM ETRAVIS_SELECTION S
+			INNER JOIN ETRAVIS_ACCOUNT A
+			    ON S.EANO = A.EANO
+			WHERE S.ECNO = #{ecno}
+			AND S.CLASSIFICATIONID = #{classificationid})	
+		ORDER BY EANO ASC
+    </select>
+    
+	 <select id="selectionList" parameterType="etravis.vo.ClassificationVO" resultMap="account">
+		SELECT  S.ESNO,
+				A.ACCOUNTID,
+		        A.ACCOUNTNAME
+		FROM ETRAVIS_SELECTION S
+		INNER JOIN ETRAVIS_ACCOUNT A
+		    ON S.EANO = A.EANO
+		WHERE S.ECNO = #{ecno}
+		AND S.CLASSIFICATIONID = #{classificationid}
+		ORDER BY S.ESNO ASC
+    </select>
+    
+    <insert id="insertSelectionList" parameterType="etravis.vo.SelectionVO">
+		INSERT INTO ETRAVIS_SELECTION 
+			(ESNO, ECNO, CLASSIFICATIONID, EANO)
+		VALUES
+			(SEQ_ESNO.NEXTVAL, #{ecno}, #{classificationid}, #{eano})
+	</insert>
+	
+    <delete id="deleteSelectionList" parameterType="etravis.vo.SelectionVO">
+        DELETE FROM ETRAVIS_SELECTION 
+        	WHERE ESNO = #{esno}
+    </delete>
+    
+    <delete id="deleteSelectionListAuto" parameterType="etravis.vo.SelectionVO">
+        DELETE FROM ETRAVIS_SELECTION 
+        	WHERE ECNO = #{ecno}
+    </delete>
+
+</mapper>

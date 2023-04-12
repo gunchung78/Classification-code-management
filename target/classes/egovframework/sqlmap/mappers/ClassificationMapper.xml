@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="etravis.service.impl.ClassificationMapper">
+    
+    <resultMap id="categories" type="etravis.vo.CategoriesVO">
+        <result property="cno" column="CNO" />
+        <result property="categoryname" column="CATEGORYNAME" />
+    </resultMap>
+    
+    <resultMap id="classification" type="etravis.vo.ClassificationVO">
+        <result property="ecno" column="ECNO" />
+        <result property="classificationid" column="CLASSIFICATIONID" />
+        <result property="classificationname" column="CLASSIFICATIONNAME" />
+        <result property="cno" column="CNO" />
+    </resultMap>
+    
+    <select id="CategoriesList" resultMap="categories">
+		SELECT CNO, CATEGORYNAME 
+		FROM CATEGORIES 
+		ORDER BY CNO ASC
+    </select>
+    
+    <select id="selectCategoriesList" parameterType="etravis.vo.CategoriesVO" resultMap="classification">
+        SELECT ECNO, CLASSIFICATIONID, CLASSIFICATIONNAME FROM ETRAVIS_CLASSIFICATION 
+        LEFT JOIN CATEGORIES 
+        ON ETRAVIS_CLASSIFICATION.CNO = CATEGORIES.CNO
+        WHERE ETRAVIS_CLASSIFICATION.CNO = #{cno}
+        ORDER BY ECNO ASC
+    </select>
+    
+    <insert id="insertClassification" >
+        INSERT INTO ETRAVIS_CLASSIFICATION VALUES(
+	        SEQ_ECNO.NEXTVAL, 
+	        #{classificationid}, 
+	        #{classificationname}, 
+	        #{cno})
+    </insert>
+    
+    <update id="updateClassification" parameterType="etravis.vo.ClassificationVO">
+        UPDATE ETRAVIS_CLASSIFICATION SET 
+        	CLASSIFICATIONNAME =  #{classificationname}
+        WHERE ECNO = #{ecno}
+    </update>
+    
+    <delete id="deleteClassification" parameterType="etravis.vo.ClassificationVO">
+        DELETE ETRAVIS_CLASSIFICATION 
+        	WHERE ECNO = #{ecno}
+    </delete>
+
+    
+</mapper>

@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="add" width="640" height="700" titletext="New Form">
+    <Layouts>
+      <Layout height="700" mobileorientation="landscape" width="640">
+        <Edit id="Edit00_02_00" taborder="12" left="321" top="198" width="299" height="30" enable="false"/>
+        <Edit id="Edit00" taborder="3" left="20" top="72" width="280" height="30" enable="false"/>
+        <Grid id="GridCode" taborder="0" left="20" top="114" width="280" height="566" binddataset="ds_classification_list" autosizingtype="both" autofittype="col" oncellclick="GridCode_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="분류코드"/>
+                <Cell col="1" text="분류코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:classificationid"/>
+                <Cell col="1" text="bind:classificationname"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="분류코드 등록" left="20" top="10" width="173" height="48" font="20px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="Static01" taborder="2" text="한도 점검항목" left="20" top="72" width="80" height="30" background="#33c4f9" textAlign="center"/>
+        <Combo id="ComboCategories" taborder="4" left="106" top="77" width="180" height="20" innerdataset="ds_categories_combo" codecolumn="cno" datacolumn="categoryname" text="" onitemchanged="ComboCategories_onitemchanged" canitemchange="ComboCategories_canitemchange"/>
+        <Edit id="Edit00_00" taborder="5" left="321" top="114" width="299" height="30" enable="false"/>
+        <Static id="Static01_00" taborder="6" text="점검항목 *" left="321" top="114" width="80" height="30" background="#33c4f9" textAlign="center" border="1px solid royalblue"/>
+        <Combo id="ComboCategory" taborder="7" left="407" top="119" width="180" height="20" innerdataset="ds_category_combo" datacolumn="categoryname" codecolumn="cno" enable="false" onitemchanged="ComboCategory_onitemchanged"/>
+        <Edit id="Edit00_01" taborder="8" left="321" top="142" width="299" height="30" enable="false"/>
+        <Static id="Static01_01" taborder="9" text="분류코드 *" left="321" top="142" width="80" height="30" background="#33c4f9" textAlign="center" border="1px solid royalblue"/>
+        <Edit id="Edit00_02" taborder="10" left="321" top="170" width="299" height="30" enable="false"/>
+        <Static id="Static01_02" taborder="11" text="분 류 명 *" left="321" top="170" width="80" height="30" background="#33c4f9" textAlign="center" border="1px solid royalblue"/>
+        <Static id="Static02" taborder="13" text="입력 및 상세내역" left="320" top="75" width="110" height="24" textAlign="center" font="14px/normal &quot;Malgun Gothic&quot;"/>
+        <Button id="Button00" taborder="14" text="입력" left="460" top="75" width="50" height="25" onclick="Button00_onclick"/>
+        <Button id="Button01" taborder="15" text="수정" left="515" top="75" width="50" height="25" onclick="Button01_onclick"/>
+        <Button id="Button02" taborder="16" text="취소" left="570" top="75" width="50" height="25" onclick="Button02_onclick"/>
+        <Button id="Button03" taborder="17" text="삭제" left="460" top="22" width="50" height="25" onclick="Button03_onclick"/>
+        <Button id="Button04" taborder="18" text="저장" left="515" top="22" width="50" height="25" onclick="Button04_onclick"/>
+        <Button id="Button05" taborder="19" text="종료" left="570" top="22" width="50" height="25" onclick="Button05_onclick"/>
+        <Edit id="EditCode" taborder="20" left="407" top="147" width="180" height="20" enable="false" onchanged="EditCode_onchanged" displaynulltext="8자리 이하의 숫자"/>
+        <Edit id="EditName" taborder="21" left="407" top="175" width="180" height="20" enable="false" displaynulltext="15이하의 문자"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_classification_list">
+        <ColumnInfo>
+          <Column id="ecno" type="STRING" size="256"/>
+          <Column id="classificationid" type="STRING" size="256"/>
+          <Column id="classificationname" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_categories_combo">
+        <ColumnInfo>
+          <Column id="cno" type="STRING" size="256"/>
+          <Column id="categoryname" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_category_combo">
+        <ColumnInfo>
+          <Column id="cno" type="STRING" size="256"/>
+          <Column id="categoryname" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_classification_search">
+        <ColumnInfo>
+          <Column id="cno" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_classification_insert">
+        <ColumnInfo>
+          <Column id="ecno" type="STRING" size="256"/>
+          <Column id="classificationid" type="STRING" size="256"/>
+          <Column id="classificationname" type="STRING" size="256"/>
+          <Column id="cno" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_classification_delete">
+        <ColumnInfo>
+          <Column id="ecno" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_classification_update">
+        <ColumnInfo>
+          <Column id="ecno" type="STRING" size="256"/>
+          <Column id="classificationname" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[var RowIndex = null;
+var flag = null;
+
+this.transaction("searchCategories", "svc::get.do" , "", "ds_categories_combo=categoriesOutput", "", "", false);
+this.ComboCategories.set_index(0);
+this.ds_classification_search.setColumn(0, "cno"  , this.ComboCategories.value);
+this.transaction("ClassificationSearch", "svc::ClassificationPost.do", "classificationInput = ds_classification_search", "ds_classification_list = classificationOutput", "", "", false); 
+this.ds_category_combo.setColumn(0,"cno", this.ComboCategories.value);
+this.ds_category_combo.setColumn(0,"categoryname", this.ComboCategories.text);
+this.ComboCategory.set_index(0);
+
+/* 1) --- 입력 --- */
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+	flag = "insert";
+	this.fnSet_enable(true, true, true, RowIndex);
+};
+
+/* 2) --- 수정 --- */
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+	flag = "update";
+	this.fnSet_enable(false, false, true, RowIndex);
+};
+
+/* 3) --- 취소 --- */
+this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	flag = null;
+	this.fnSet_enable(false, false, false, RowIndex);
+};
+
+/* 4) --- 삭제 --- */
+this.Button03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	if(RowIndex == null){ 
+		alert("삭제할 분류코드를 선택해주세요.");
+	} else {
+		this.fnClassificationDelete();   
+		this.fnClassificationSearch();
+		this.fnSelectionDeleteAuto();
+		this.fnSet_enable(false, false, false, RowIndex);	
+		RowIndex = null;
+	}
+};
+
+/* 5) --- 저장 --- */
+this.Button04_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var cinput = this.EditCode.text;
+	var regCode = new RegExp("[0-9]{1,8}");
+	var checkCode = regCode.exec(cinput);
+	
+ 	var ninput = this.EditName.text;
+	var regName = new RegExp("[^a-za-z0-9]{1,15}");   
+	var checkName = regName.exec(ninput);
+	
+	if ((cinput == "") || (ninput == ""))
+	{	alert("값을 입력해주세요.");	}
+	else if ((checkName == null) || (checkCode == null))
+	{	alert("입력조건에 부적합합니다.");	}
+	else{
+		if (flag == "insert") { this.fnClassificationInsert();   
+		} else if (flag == "update") { this.fnClassificationUpdate();
+		} else { alert("저장할 분류코드를 입력해주세요.");
+		}
+		this.fnClassificationSearch();
+		this.fnSet_enable(false, false, false, RowIndex);
+		RowIndex = null;
+		flag = null;
+	}
+};
+
+/* 6) --- 조회 --- */
+
+// 점검항복별 분류코드 조회
+this.ComboCategories_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fnClassificationSearch();
+	this.ds_category_combo.setColumn(0,"cno", this.ComboCategories.value);
+	this.ds_category_combo.setColumn(0,"categoryname", this.ComboCategories.text);
+	this.ComboCategory.set_index(0);
+};
+
+// 분류코드 선택
+this.GridCode_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	RowIndex = e.row;
+	this.ds_classification_delete.setColumn(0, "ecno"  , this.ds_classification_list.getColumn(RowIndex, "ecno"));
+	this.ds_classification_update.setColumn(0, "ecno"  , this.ds_classification_list.getColumn(RowIndex, "ecno"));
+	this.fnSet_enable(false, false, false, RowIndex);
+};
+
+/* 7) --- 종료 --- */
+this.Button05_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+
+
+/* --- 기타 function --- */
+
+// Edit 비활성화 fn
+this.fnSet_enable = function (category, code, name, RowIndex){
+	this.fnMoveValue(RowIndex);
+	this.ComboCategory.set_enable(category);
+	this.EditCode.set_enable(code);
+	this.EditName.set_enable(name);
+	if (category == true)
+	{
+		this.transaction("searchCategories", "svc::get.do" , "", "ds_category_combo=categoriesOutput", "", "", false);
+		this.EditCode.set_value(null);
+		this.EditName.set_value(null);
+	}
+	else if (category == false && name == true)
+	{
+		this.fnMoveValue(RowIndex);
+		if (RowIndex == null)
+		{
+			this.ComboCategory.set_enable(false);
+			this.EditCode.set_enable(false);
+			this.EditName.set_enable(false);
+			alert("수정할 분류코드를 선택해주세요.");
+		}
+	}
+	else if (name == false)
+	{
+		this.fnMoveValue(RowIndex);
+	}
+};
+
+// 분류코드값 이동 fn
+this.fnMoveValue = function (RowIndex){
+	this.ds_classification_insert.setColumn(0, "classificationid"  , this.EditCode.text);
+	this.ds_classification_insert.setColumn(0, "classificationname"  , this.EditName.text);
+	this.EditCode.set_value(this.ds_classification_list.getColumn(RowIndex, "classificationid"));
+	this.EditName.set_value(this.ds_classification_list.getColumn(RowIndex, "classificationname"));
+};
+
+
+
+/* --- transaction function --- */
+
+// 점검항복별 분류코드 조회 fn 
+this.fnClassificationSearch = function (){
+  this.ds_classification_search.setColumn(0, "cno"  , this.ComboCategories.value);
+  
+  var strSvcId    = "ClassificationSearch";
+  var strSvcUrl   = "svc::ClassificationPost.do";
+  var inData      = "classificationInput = ds_classification_search";
+  var outData     = "ds_classification_list = classificationOutput";
+  var strArg      = "";
+  var callBackFnc = "";
+  var isAsync     = false;
+  
+  this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);         
+};
+
+// 분류코드 insert fn
+this.fnClassificationInsert = function (){
+  this.ds_classification_insert.setColumn(0, "cno"  , this.ComboCategory.value);
+  this.ds_classification_insert.setColumn(0, "classificationid"  , this.EditCode.text);
+  this.ds_classification_insert.setColumn(0, "classificationname"  , this.EditName.text);
+  
+  var strSvcId    = "ClassificationInsert";
+  var strSvcUrl   = "svc::InsertClassificationPost.do";
+  var inData      = "insertClassificationInput = ds_classification_insert";
+  var outData     = "";
+  var strArg      = "";
+  var callBackFnc = "";
+  var isAsync     = false;
+  
+  this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);  	
+};
+
+
+// 분류코드 delete fn
+this.fnClassificationDelete = function (){
+  
+  var strSvcId    = "ClassificationDelete";
+  var strSvcUrl   = "svc::DeleteClassificationPost.do";
+  var inData      = "deleteClassificationInput = ds_classification_delete";
+  var outData     = "";
+  var strArg      = "";
+  var callBackFnc = "";
+  var isAsync     = false;
+  
+  this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);  	
+}
+
+this.fnSelectionDeleteAuto = function (){
+
+  var strSvcId    = "SelectionDeleteAuto";
+  var strSvcUrl   = "svc::DeleteSelectionAutoPost.do";
+  var inData      = "deleteSelectAutoInput = ds_classification_delete";
+  var outData     = "";
+  var strArg      = "";
+  var callBackFnc = "";
+  var isAsync     = false;
+  
+  this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);  	
+}
+
+// 분류코드 update fn
+this.fnClassificationUpdate = function (){
+  this.ds_classification_update.setColumn(0, "classificationname"  , this.EditName.text);
+
+  var strSvcId    = "ClassificationUpdate";
+  var strSvcUrl   = "svc::UpdateClassificationPost.do";
+  var inData      = "updateClassificationInput = ds_classification_update";
+  var outData     = "";
+  var strArg      = "";
+  var callBackFnc = "";
+  var isAsync     = false;
+  
+  this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);  	
+}
+]]></Script>
+  </Form>
+</FDL>

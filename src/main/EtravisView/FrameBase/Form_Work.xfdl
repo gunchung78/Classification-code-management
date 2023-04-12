@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="login" width="500" height="500" titletext="New Form" enable="true" onclose="login_onclose">
+    <Layouts>
+      <Layout height="500" mobileorientation="landscape" width="500" stepcount="2">
+        <Static id="Static00" taborder="0" text="Etravis" left="125" top="75" width="250" height="75" textAlign="center" font="36px/normal &quot;Malgun Gothic&quot;" onclick="Static00_onclick"/>
+        <Edit id="EditId" taborder="1" left="125" top="180" width="250" height="30" displaynulltext="아이디"/>
+        <Edit id="EditPass" taborder="2" left="125" top="240" width="250" height="30" onchanged="Edit01_onchanged" displaynulltext="비밀번호" password="true"/>
+        <Button id="Button00" taborder="3" left="125" top="300" width="250" height="30" text="로그인" onclick="Button00_onclick"/>
+        <Button id="Button01" taborder="4" text="회원가입" left="125" top="350" width="60" height="30" onclick="Button01_onclick"/>
+        <Button id="Button02" taborder="5" text="종료" left="315" top="350" width="60" height="30" onclick="Button02_onclick"/>
+        <Static id="Static00_00" taborder="12" text="LOGIN" left="125" top="75" width="250" height="75" textAlign="center" font="36px/normal &quot;Malgun Gothic&quot;" onclick="Static00_onclick" positionstep="1"/>
+        <Edit id="userid" taborder="6" left="125" top="180" width="250" height="30" positionstep="1" displaynulltext="아이디" onchanged="Edit00_00_onchanged"/>
+        <Edit id="userpass" taborder="7" left="125" top="220" width="250" height="30" positionstep="1" displaynulltext="비밀번호" password="true"/>
+        <Button id="Button01_00" taborder="10" text="등록" left="125" top="350" width="60" height="30" positionstep="1" onclick="Button01_00_onclick"/>
+        <Button id="Button02_00" taborder="11" text="취소" left="315" top="350" width="60" height="30" positionstep="1" onclick="Button02_00_onclick"/>
+        <Edit id="username" taborder="8" left="125" top="260" width="250" height="30" positionstep="1" displaynulltext="이름"/>
+        <Edit id="birth" taborder="9" left="125" top="300" width="250" height="30" positionstep="1" onchanged="Edit03_onchanged" displaynulltext="생년월일"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.username = null;
+
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnLogin();
+};
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.setStepIndex(1);
+};
+
+this.Button02_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.setStepIndex(0);
+};
+
+this.Button01_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnRegister();
+};
+
+this.Button03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strSvcId    = "Logout";
+	var strSvcUrl   = "svc::Logout.do";
+	var inData      = "";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "";
+	var isAsync     = false;
+
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 	
+};
+
+this.fnRegister = function ()
+{
+	if ((this.userid.value == null) || (this.userpass.value == null) || (this.username.value == null) || (this.birth.value == null))
+	{
+		alert("빈 값이 존재합니다");
+	}
+		else {
+		this.ds_register.setColumn(0, "userid", this.userid.value);
+		this.ds_register.setColumn(0, "userpass", this.userpass.value);
+		this.ds_register.setColumn(0, "username", this.username.value);
+		this.ds_register.setColumn(0, "birth", this.birth.value);
+		
+		var strSvcId    = "Register";
+		var strSvcUrl   = "svc::RegisterPost.do";
+		var inData      = "registerInput = ds_register";
+		var outData     = "";
+		var strArg      = "";
+		var callBackFnc = "";
+		var isAsync     = false;
+
+		this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+	}
+
+};
+
+this.fnLogin = function ()
+{
+
+	this.ds_login.setColumn(0, "userid", this.EditId.text);
+	this.ds_login.setColumn(0, "userpass", this.EditPass.text);
+
+	var strSvcId    = "Login";
+	var strSvcUrl   = "svc::Login.do";
+	var inData      = "loginInput = ds_login";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnlogincheck";
+	var isAsync     = false;
+
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 	
+};
+
+this.fnlogincheck = function (strSvcId, ErrorCode, ErrorMsg) {
+	if (ErrorCode == 0)
+	{
+		nexacro.setCookieVariable("login", this.username);
+		this.go("svc::EtravisView/FrameBase/main.xfdl")
+	} else{
+		alert(ErrorMsg);
+	}
+};
+
+this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};]]></Script>
+    <Objects>
+      <Dataset id="ds_register">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="userpass" type="STRING" size="256"/>
+          <Column id="username" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_login">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="userpass" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

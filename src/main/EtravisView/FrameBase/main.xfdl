@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Work" width="1280" height="700" titletext="Form_Work" onmouseenter="Form_Work_onmouseenter" onmousemove="Form_Work_onmousemove" onactivate="Form_Work_onactivate">
+    <Layouts>
+      <Layout width="1280" height="700" screenid="Desktop_screen" stepcount="0">
+        <Edit id="Edit01" taborder="7" left="680" top="132" width="560" height="30" onchanged="Edit01_onchanged" enable="false"/>
+        <Combo id="ComboAccount" taborder="0" text="전체" left="760" top="137" width="390" height="20" onitemchanged="Combo00_onitemchanged" innerdataset="ds_account_combo" codecolumn="code" datacolumn="name" value="" index="0"/>
+        <Grid id="Grid00" taborder="1" left="681" top="180" width="559" height="470" binddataset="ds_account_list" autofittype="col" oncellclick="Grid00_oncellclick" onheadclick="Grid00_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="계정코드"/>
+                <Cell col="2" text="계정코드명"/>
+                <Cell col="3" text="상품코드"/>
+                <Cell col="4" text="상품코드명"/>
+                <Cell col="5" text="자산코드"/>
+                <Cell col="6" text="자산코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:chk"/>
+                <Cell col="1" text="bind:accountid"/>
+                <Cell col="2" text="bind:accountname"/>
+                <Cell col="3" text="bind:productid"/>
+                <Cell col="4" text="bind:productname"/>
+                <Cell col="5" text="bind:propertyid"/>
+                <Cell col="6" text="bind:propertyname"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button00" taborder="2" text="검색" left="1160" top="133" width="80" height="28" onclick="Button00_onclick" layoutorder="0"/>
+        <Static id="Static00" taborder="3" text="분류코드 관리" left="18" top="10" width="225" height="42" font="20px/normal &quot;Malgun Gothic&quot;" textAlign="center" onclick="Static00_onclick"/>
+        <Edit id="Edit00" taborder="4" left="18" top="80" width="1222" height="30" enable="false" enableevent="true"/>
+        <Static id="Static02" taborder="6" text="한도 점검항목" left="18" top="80" width="122" height="30" color="#000000" background="#999999" onclick="Static02_onclick" textAlign="center"/>
+        <Combo id="ComboCategories" taborder="5" text="" left="150" top="85" width="510" height="20" onitemchanged="Combo01_onitemchanged" innerdataset="ds_categories_combo" codecolumn="cno" datacolumn="categoryname" index="-1" value=""/>
+        <Static id="Static03" taborder="8" text="자산구분" left="681" top="133" width="69" height="29" background="#33c4f9" textAlign="center"/>
+        <Grid id="Grid01" taborder="9" left="18" top="180" width="280" height="468" binddataset="ds_classification_list" autofittype="col" oncellclick="Grid01_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="분류코드"/>
+                <Cell col="1" text="분류코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:classificationid" textAlign="center"/>
+                <Cell col="1" text="bind:classificationname" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid01_00" taborder="10" left="320" top="180" width="280" height="467" binddataset="ds_selection_list" autofittype="col" onheadclick="Grid01_00_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="계정코드"/>
+                <Cell col="2" text="계정코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:chk"/>
+                <Cell col="1" text="bind:accountid"/>
+                <Cell col="2" text="bind:accountname"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button01" taborder="11" text="&gt;&gt;" left="615" top="340" width="50" height="30" textAlign="center" onclick="Button01_onclick"/>
+        <Button id="Button01_00" taborder="12" text="&lt;&lt;" left="615" top="385" width="50" height="30" textAlign="center" onclick="Button01_00_onclick"/>
+        <Button id="Button02" taborder="13" text="조회" left="960" top="30" width="80" height="30" onclick="Button02_onclick"/>
+        <Button id="Button03" taborder="14" text="로그아웃" left="860" top="30" width="80" height="30" onclick="Button03_onclick"/>
+        <Button id="Button04" taborder="15" text="삭제" left="1060" top="30" width="80" height="30" onclick="Button04_onclick"/>
+        <Button id="Button05" taborder="16" text="종료" left="1160" top="30" width="80" height="30" onclick="Button05_onclick"/>
+        <Static id="Static01_00" taborder="17" text="점검항목별 분류코드" left="18" top="150" width="145" height="20" onclick="Static01_00_onclick" font="bold 12px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="Static01_01" taborder="18" text="분류코드별 계정코드" left="320" top="150" width="145" height="20" font="bold 12px/normal &quot;Malgun Gothic&quot;"/>
+        <Button id="Button06" taborder="19" text="분류코드등록" left="198" top="152" width="100" height="21" background="#2dbca0" color="ivory" onclick="Button06_onclick"/>
+        <Static id="Static04" taborder="20" left="670" top="30" width="180" height="30"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_account_list">
+        <ColumnInfo>
+          <Column id="accountid" type="STRING" size="256"/>
+          <Column id="accountname" type="STRING" size="256"/>
+          <Column id="productid" type="STRING" size="256"/>
+          <Column id="productname" type="STRING" size="256"/>
+          <Column id="propertyid" type="STRING" size="256"/>
+          <Column id="propertyname" type="STRING" size="256"/>
+          <Column id="eano" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_account_combo">
+        <ColumnInfo>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="code" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="name">전체</Col>
+            <Col id="code"/>
+          </Row>
+          <Row>
+            <Col id="name">단기매매</Col>
+            <Col id="code">단기매매</Col>
+          </Row>
+          <Row>
+            <Col id="name">매도가능(유동)</Col>
+            <Col id="code">매도가능(유동)</Col>
+          </Row>
+          <Row>
+            <Col id="name">만기보유(유동)</Col>
+            <Col id="code">만기보유(유동)</Col>
+          </Row>
+          <Row>
+            <Col id="name">매도가능(비유동)</Col>
+            <Col id="code">매도가능(비유동)</Col>
+          </Row>
+          <Row>
+            <Col id="code">만기보유(비유동)</Col>
+            <Col id="name">만기보유(비유동)</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_account_search">
+        <ColumnInfo>
+          <Column id="propertysearch" type="STRING" size="256"/>
+          <Column id="ecno" type="STRING" size="256"/>
+          <Column id="classificationid" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_categories_combo">
+        <ColumnInfo>
+          <Column id="cno" type="STRING" size="256"/>
+          <Column id="categoryname" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_classification_list">
+        <ColumnInfo>
+          <Column id="classificationid" type="STRING" size="256"/>
+          <Column id="classificationname" type="STRING" size="256"/>
+          <Column id="ecno" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_classification_search">
+        <ColumnInfo>
+          <Column id="cno" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_selection_list">
+        <ColumnInfo>
+          <Column id="accountid" type="STRING" size="256"/>
+          <Column id="accountname" type="STRING" size="256"/>
+          <Column id="eano" type="STRING" size="256"/>
+          <Column id="esno" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_selection_search">
+        <ColumnInfo>
+          <Column id="ecno" type="STRING" size="256"/>
+          <Column id="classificationid" type="STRING" size="256"/>
+          <Column id="classificationname" type="STRING" size="256"/>
+          <Column id="cno" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_selection_check">
+        <ColumnInfo>
+          <Column id="esno" type="STRING" size="256"/>
+          <Column id="ecno" type="STRING" size="256"/>
+          <Column id="classificationid" type="STRING" size="256"/>
+          <Column id="eano" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[var ecnoInput = "";
+var classificationidInput = "";
+this.transaction("searchCategories", "svc::get.do" , "", "ds_categories_combo=categoriesOutput", "", "", false);
+this.ComboCategories.set_index(0);
+
+
+/* 1) --- 삭제 --- */
+this.Button04_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	ecnoInput = "";
+    classificationidInput = ""; 
+	this.ComboCategories.set_text("");
+	this.ComboAccount.set_index(0);
+	this.fnRestList("left");
+	this.fnRestList("middle");
+	this.fnRestList("right");
+	this.ComboCategories.set_index(0);
+};
+
+/* 2) --- 취소 --- */
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+	var input = "";	
+	if ((ecnoInput == "") || (classificationidInput == ""))
+	{
+		alert("점검항목별 분류코드를 선택해주세요.")
+	}
+	else 
+	{
+		for(var i=0;i<this.ds_selection_list.rowcount;i++){
+			if(this.ds_selection_list.getColumn(i, "chk") == "1"){
+				input = this.ds_selection_list.getColumn(i,"esno");
+				this.fnDeleteAccount(input);
+			}
+		}
+		if (input == ""){ alert("체크박스를 선택해주세요."); }
+		else { 
+			this.fnRestList("middle"); 
+			this.fnRestList("right"); 
+		}
+	}
+};
+
+/* 3) --- 등록 --- */
+this.Button01_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+	var input = "";	
+	if ((ecnoInput == "") || (classificationidInput == "")) {
+		alert("계정코드를 선택해주세요.")
+	}
+	else {
+		for(var i=0;i<this.ds_account_list.rowcount;i++){
+			if(this.ds_account_list.getColumn(i, "chk") == "1"){
+				input = this.ds_account_list.getColumn(i,"eano");
+				this.fnInsertAccount(input);
+			}
+		}
+		if (input == ""){ alert("체크박스를 선택해주세요."); }
+		else { 
+			this.fnRestList("middle"); 
+			this.fnRestList("right"); 
+		}
+	}
+};
+
+/* 4) --- 분류코드등록 --- */
+this.Button06_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){	
+	nexacro.open("add", "svc::EtravisView/FrameBase/add.xfdl", this.getOwnerFrame());
+};
+
+/* 5) --- 검색 --- */
+
+// 계정코드 조회
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+	this.fnRestList("right");
+};
+
+// 분류코드별 계정코드 조회
+this.Grid01_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo){
+	ecnoInput = this.ds_classification_list.getColumn(e.row,"ecno");
+    classificationidInput = this.ds_classification_list.getColumn(e.row,"classificationid");
+	this.fnRestList("middle");
+	this.fnRestList("right");
+};
+
+// 점검항목별 분류코드 조회
+this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+	ecnoInput = "";
+    classificationidInput = ""; 
+	this.fnRestList("left");
+	this.fnRestList("middle");
+	this.fnRestList("right");
+};
+
+/* 6) --- 로그인 --- */
+
+// 로그인 창 이동
+this.Button03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+	if (nexacro.getCookieVariable("login") != "out") {
+		this.fnLogout();
+		this.Static04.set_text("");
+		this.go("svc::EtravisView/FrameBase/Form_Work.xfdl");
+	}
+};
+
+// 로그인 확인
+this.Form_Work_onmousemove = function(obj:nexacro.Form,e:nexacro.MouseEventInfo)
+{
+	if (nexacro.getCookieVariable("login") == "out") {
+		this.Static04.set_text("");
+		this.Button03.set_text("로그인");
+	} else {
+		var welecome = nexacro.getCookieVariable("login") + "님 환영합니다.";
+		this.Static04.set_text(welecome);
+		this.Button03.set_text("로그아웃");
+	}
+};
+
+/* 7) --- 종료 --- */
+this.Button05_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+	this.close();
+};
+
+
+
+/* --- 기타 function --- */
+
+// 조회 fn
+this.fnRestList = function (where)
+{
+	if (where == "left") { 
+		this.fnClassificationSearch(); 
+	} 
+	else if (where == "middle") { 
+		this.Grid01_00.setCellProperty("head", 0, "text", "0");
+		this.fnSelectionSearch(); 
+	}
+	else if (where == "right") { 
+		this.Grid00.setCellProperty("head", 0, "text", "0");
+		this.fnSearch(); 
+	} 
+};
+
+
+// 체크박스 > 전체선택 계정코드
+this.Grid00_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo){
+	var dataset = this.ds_account_list;
+	this.fnAllCheck(dataset, e, obj)
+};
+
+// 체크박스 > 전체선택 분류코드별 계정코드
+this.Grid01_00_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo){
+	var dataset = this.ds_selection_list;
+	this.fnAllCheck(dataset, e, obj)
+};
+
+// 체크박스 추가
+this.fnCheckRowcount = function(dataset){
+ 	dataset.addColumn("chk","STRING");
+ 	for(var i=0;i<dataset.rowcount;i++){
+ 		dataset.setColumn(i, "chk", "0");
+ 	}
+};
+
+// 체크박스 전체선택 fn
+this.fnAllCheck = function(dataset, e, obj){
+	if(e.cell == 0){
+		var chk = obj.getCellText(-1, 0);
+		chk = (chk == "1" ? "0" : "1");
+		for(var i=0;i<dataset.rowcount;i++){
+			input = dataset.setColumn(i, "chk", chk);
+		}
+		obj.setCellProperty("head", 0, "text", chk);
+	}
+};
+
+
+
+/* --- transaction function --- */
+
+// 계정코드 조회 fn
+this.fnSearch = function (){
+  this.ds_account_search.setColumn(0, "propertysearch"  , this.ComboAccount.value);
+  
+  var strSvcId    = "search";
+  var strSvcUrl   = "svc::AccountPost.do";
+  var inData      = "accountInput=ds_account_search";
+  var outData     = "ds_account_list=accountOutput";
+  var strArg      = "";
+  var callBackFnc = "";
+  var isAsync     = false;
+  var dataset = this.ds_account_list;
+
+  this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+  this.fnCheckRowcount(dataset);
+};
+
+// 점검항복별 분류코드 조회 fn 
+this.fnClassificationSearch = function (){
+  this.ds_classification_search.setColumn(0, "cno"  , this.ComboCategories.value);
+  
+  var strSvcId    = "ClassificationSearch";
+  var strSvcUrl   = "svc::ClassificationPost.do";
+  var inData      = "classificationInput = ds_classification_search";
+  var outData     = "ds_classification_list = classificationOutput";
+  var strArg      = "";
+  var callBackFnc = "";
+  var isAsync     = false;
+  
+  this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);         
+};
+
+// 분류코드별 계정코드 조회 fn 
+this.fnSelectionSearch = function (){
+  this.ds_selection_search.setColumn(0, "ecno", ecnoInput);
+  this.ds_selection_search.setColumn(0, "classificationid", classificationidInput);
+  this.ds_selection_check.setColumn(0, "ecno", ecnoInput);
+  this.ds_selection_check.setColumn(0, "classificationid", classificationidInput);
+  this.ds_account_search.setColumn(0, "ecno" , ecnoInput);
+  this.ds_account_search.setColumn(0, "classificationid", classificationidInput);
+  
+  var strSvcId    = "SelectionSearch";
+  var strSvcUrl   = "svc::SelectionPost.do";
+  var inData      = "selectInput = ds_selection_search";
+  var outData     = "ds_selection_list = selectOutput";
+  var strArg      = "";
+  var callBackFnc = "";
+  var isAsync     = false;
+  var dataset = this.ds_selection_list;
+  
+  this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+  this.fnCheckRowcount(dataset);
+};
+
+// 등록 fn
+this.fnInsertAccount = function(input){
+  this.ds_selection_check.setColumn(0, "eano", input); 
+  var strSvcId    = "SelectionInsert";
+  var strSvcUrl   = "svc::InsertSelectionPost.do";
+  var inData      = "insertSelectInput = ds_selection_check";
+  var outData     = "";
+  var strArg      = "";
+  var callBackFnc = "";
+  var isAsync     = false;
+  
+  this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+}
+
+// 취소 fn 
+this.fnDeleteAccount = function(input){
+  this.ds_selection_check.setColumn(0, "esno", input); 
+  var strSvcId    = "SelectionDelete";
+  var strSvcUrl   = "svc::DeleteSelectionPost.do";
+  var inData      = "deleteSelectInput = ds_selection_check";
+  var outData     = "";
+  var strArg      = "";
+  var callBackFnc = "";
+  var isAsync     = false;
+  
+  this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+}
+
+// 로그아웃 fn 
+this.fnLogout = function(){
+  var strSvcId    = "Logout";
+  var strSvcUrl   = "svc::Logout.do";
+  var inData      = "";
+  var outData     = "";
+  var strArg      = "";
+  var callBackFnc = "";
+  var isAsync     = false;
+  
+  this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+  nexacro.setCookieVariable("login", "out");
+}
+
+
+
+
+
+
+
+
+
+
+]]></Script>
+  </Form>
+</FDL>
